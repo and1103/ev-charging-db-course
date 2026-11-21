@@ -1,0 +1,68 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+consumer_invoice,consumer_invoice_chk_1,CHECK,,,,(`amount` > 0)
+consumer_invoice,consumer_invoice_ibfk_1,FOREIGN KEY,request_id,consumer_invoice_request,id,
+consumer_invoice,consumer_invoice_ibfk_2,FOREIGN KEY,original_id,consumer_invoice,id,
+consumer_invoice,consumer_invoice_ibfk_3,FOREIGN KEY,issued_by,account,id,
+consumer_invoice,original_id,UNIQUE,original_id,,,
+consumer_invoice,PRIMARY,PRIMARY KEY,id,,,
+diff_confirmation,diff_confirmation_chk_1,CHECK,,,,"(`side` in (_utf8mb4\'platform\',_utf8mb4\'operator\'))"
+diff_confirmation,diff_confirmation_chk_2,CHECK,,,,"(`conclusion` in (_utf8mb4\'accept\',_utf8mb4\'reject\'))"
+diff_confirmation,diff_confirmation_ibfk_1,FOREIGN KEY,diff_id,recon_diff,id,
+diff_confirmation,diff_confirmation_ibfk_2,FOREIGN KEY,actor,account,id,
+diff_confirmation,PRIMARY,PRIMARY KEY,diff_id,,,
+diff_confirmation,PRIMARY,PRIMARY KEY,side,,,
+external_bill,external_bill_chk_1,CHECK,,,,(`order_id` > 0)
+external_bill,external_bill_chk_2,CHECK,,,,(`kwh` >= 0)
+external_bill,external_bill_ibfk_1,FOREIGN KEY,settlement_id,settlement_import,settlement_id,
+external_bill,PRIMARY,PRIMARY KEY,settlement_id,,,
+external_bill,PRIMARY,PRIMARY KEY,order_id,,,
+recon_diff,PRIMARY,PRIMARY KEY,id,,,
+recon_diff,recon_diff_chk_1,CHECK,,,,"(`kind` in (_utf8mb4\'energy\',_utf8mb4\'price\',_utf8mb4\'payment\',_utf8mb4\'missing\',_utf8mb4\'extra\'))"
+recon_diff,recon_diff_chk_2,CHECK,,,,"(`conclusion` in (_utf8mb4\'accept\',_utf8mb4\'reject\'))"
+recon_diff,recon_diff_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+recon_diff,settlement_id,UNIQUE,settlement_id,,,
+recon_diff,settlement_id,UNIQUE,order_id,,,
+recon_diff,settlement_id,UNIQUE,kind,,,
+settlement,operator_id,UNIQUE,operator_id,,,
+settlement,operator_id,UNIQUE,station_id,,,
+settlement,operator_id,UNIQUE,period,,,
+settlement,PRIMARY,PRIMARY KEY,id,,,
+settlement,settlement_chk_1,CHECK,,,,(dayofmonth(`period`) = 1)
+settlement,settlement_chk_2,CHECK,,,,"(`state` in (_utf8mb4\'draft\',_utf8mb4\'confirmed\',_utf8mb4\'paid\'))"
+settlement,settlement_ibfk_1,FOREIGN KEY,station_id,station,id,
+settlement,settlement_ibfk_2,FOREIGN KEY,operator_id,operator,id,
+settlement_adjustment,diff_id,UNIQUE,diff_id,,,
+settlement_adjustment,PRIMARY,PRIMARY KEY,id,,,
+settlement_adjustment,refund_id,UNIQUE,refund_id,,,
+settlement_adjustment,settlement_adjustment_chk_1,CHECK,,,,(`customer_reduction` >= 0)
+settlement_adjustment,settlement_adjustment_chk_2,CHECK,,,,(`energy_reversal` >= 0)
+settlement_adjustment,settlement_adjustment_chk_3,CHECK,,,,(`service_reversal` >= 0)
+settlement_adjustment,settlement_adjustment_chk_4,CHECK,,,,(`fee_reversal` >= 0)
+settlement_adjustment,settlement_adjustment_chk_5,CHECK,,,,(((`diff_id` is not null) + (`refund_id` is not null)) = 1)
+settlement_adjustment,settlement_adjustment_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+settlement_adjustment,settlement_adjustment_ibfk_2,FOREIGN KEY,diff_id,recon_diff,id,
+settlement_adjustment,settlement_adjustment_ibfk_3,FOREIGN KEY,refund_id,refund,id,
+settlement_confirmation,PRIMARY,PRIMARY KEY,settlement_id,,,
+settlement_confirmation,PRIMARY,PRIMARY KEY,side,,,
+settlement_confirmation,settlement_confirmation_chk_1,CHECK,,,,"(`side` in (_utf8mb4\'platform\',_utf8mb4\'operator\'))"
+settlement_confirmation,settlement_confirmation_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+settlement_confirmation,settlement_confirmation_ibfk_2,FOREIGN KEY,actor,account,id,
+settlement_import,PRIMARY,PRIMARY KEY,settlement_id,,,
+settlement_import,settlement_import_chk_1,CHECK,,,,(`expected_rows` between 0 and 10000)
+settlement_import,settlement_import_chk_2,CHECK,,,,"(`state` in (_utf8mb4\'open\',_utf8mb4\'complete\'))"
+settlement_import,settlement_import_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+settlement_invoice,original_id,UNIQUE,original_id,,,
+settlement_invoice,PRIMARY,PRIMARY KEY,id,,,
+settlement_invoice,settlement_invoice_chk_1,CHECK,,,,(`amount` > 0)
+settlement_invoice,settlement_invoice_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+settlement_invoice,settlement_invoice_ibfk_2,FOREIGN KEY,original_id,settlement_invoice,id,
+settlement_item,order_id,UNIQUE,order_id,,,
+settlement_item,PRIMARY,PRIMARY KEY,settlement_id,,,
+settlement_item,PRIMARY,PRIMARY KEY,order_id,,,
+settlement_item,settlement_item_chk_1,CHECK,,,,(`kwh` >= 0)
+settlement_item,settlement_item_chk_2,CHECK,,,,(`energy_share` >= 0)
+settlement_item,settlement_item_chk_3,CHECK,,,,(`service_share` >= 0)
+settlement_item,settlement_item_chk_4,CHECK,,,,(`platform_fee` >= 0)
+settlement_item,settlement_item_chk_5,CHECK,,,,(`net_received` >= 0)
+settlement_item,settlement_item_ibfk_1,FOREIGN KEY,settlement_id,settlement,id,
+settlement_item,settlement_item_ibfk_2,FOREIGN KEY,order_id,charge_order,id,

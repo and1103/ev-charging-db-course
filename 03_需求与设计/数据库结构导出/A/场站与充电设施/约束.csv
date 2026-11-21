@@ -1,0 +1,26 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+asset_history,asset_history_chk_1,CHECK,,,,(((`charger_id` is not null) + (`connector_id` is not null)) = 1)
+asset_history,asset_history_ibfk_1,FOREIGN KEY,charger_id,charger,id,
+asset_history,asset_history_ibfk_2,FOREIGN KEY,connector_id,connector,id,
+asset_history,PRIMARY,PRIMARY KEY,id,,,
+asset_request,asset_request_chk_1,CHECK,,,,"(`kind` in (_utf8mb4\'acceptance\',_utf8mb4\'amendment\',_utf8mb4\'offline\'))"
+asset_request,asset_request_chk_2,CHECK,,,,"(`state` in (_utf8mb4\'pending\',_utf8mb4\'approved\',_utf8mb4\'rejected\'))"
+asset_request,asset_request_ibfk_1,FOREIGN KEY,charger_id,charger,id,
+asset_request,pending_charger,UNIQUE,pending_charger,,,
+asset_request,PRIMARY,PRIMARY KEY,id,,,
+charger,charger_chk_1,CHECK,,,,(`rated_kw` > 0)
+charger,charger_chk_2,CHECK,,,,"(`state` in (_utf8mb4\'idle\',_utf8mb4\'occupied\',_utf8mb4\'fault\',_utf8mb4\'offline\'))"
+charger,charger_ibfk_1,FOREIGN KEY,station_id,station,id,
+charger,PRIMARY,PRIMARY KEY,id,,,
+connector,charger_id,UNIQUE,charger_id,,,
+connector,charger_id,UNIQUE,gun_position,,,
+connector,connector_chk_1,CHECK,,,,(`gun_position` > 0)
+connector,connector_chk_2,CHECK,,,,"(`kind` in (_utf8mb4\'AC\',_utf8mb4\'DC\'))"
+connector,connector_chk_3,CHECK,,,,(`max_kw` > 0)
+connector,connector_chk_4,CHECK,,,,"(`state` in (_utf8mb4\'idle\',_utf8mb4\'occupied\',_utf8mb4\'fault\',_utf8mb4\'offline\'))"
+connector,connector_ibfk_1,FOREIGN KEY,charger_id,charger,id,
+connector,PRIMARY,PRIMARY KEY,id,,,
+operator,PRIMARY,PRIMARY KEY,id,,,
+station,PRIMARY,PRIMARY KEY,id,,,
+station,station_chk_1,CHECK,,,,(`spaces` >= 0)
+station,station_ibfk_1,FOREIGN KEY,operator_id,operator,id,

@@ -1,0 +1,3321 @@
+{
+  "tables": {
+    "queue_entry": {
+      "name": "queue_entry",
+      "owner": "Q",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "vehicle_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "queued_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "active_vehicle",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "station_id",
+          "active_vehicle"
+        ]
+      ],
+      "source": "02_数据库脚本/A_场站设施与排队/04_queue.sql",
+      "line": 1
+    },
+    "queue_call": {
+      "name": "queue_call",
+      "owner": "Q",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "entry_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "connector_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "called_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "deadline",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "notified_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "id",
+          "connector_id"
+        ]
+      ],
+      "source": "02_数据库脚本/A_场站设施与排队/04_queue.sql",
+      "line": 7
+    },
+    "gun_hold": {
+      "name": "gun_hold",
+      "owner": "Q",
+      "columns": [
+        {
+          "name": "call_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "connector_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "active_gun",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "call_id"
+      ],
+      "unique": [
+        [
+          "order_id"
+        ],
+        [
+          "active_gun"
+        ]
+      ],
+      "source": "02_数据库脚本/A_场站设施与排队/04_queue.sql",
+      "line": 12
+    },
+    "operator": {
+      "name": "operator",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 1
+    },
+    "station": {
+      "name": "station",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "address",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "longitude",
+          "type": "numeric(9,6)",
+          "required": false
+        },
+        {
+          "name": "latitude",
+          "type": "numeric(8,6)",
+          "required": false
+        },
+        {
+          "name": "spaces",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "opens",
+          "type": "time",
+          "required": true
+        },
+        {
+          "name": "closes",
+          "type": "time",
+          "required": true
+        },
+        {
+          "name": "parking_note",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 2
+    },
+    "charger": {
+      "name": "charger",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "model",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "rated_kw",
+          "type": "numeric(8,2)",
+          "required": true
+        },
+        {
+          "name": "protocol",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "commissioned_on",
+          "type": "date",
+          "required": false
+        },
+        {
+          "name": "warranty_until",
+          "type": "date",
+          "required": false
+        },
+        {
+          "name": "heartbeat",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 8
+    },
+    "connector": {
+      "name": "connector",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "charger_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "gun_position",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "interface",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "max_kw",
+          "type": "numeric(8,2)",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "charger_id",
+          "gun_position"
+        ]
+      ],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 14
+    },
+    "asset_history": {
+      "name": "asset_history",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "charger_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "connector_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "old_state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "new_state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "happened_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 21
+    },
+    "asset_request": {
+      "name": "asset_request",
+      "owner": "A",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "charger_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "payload",
+          "type": "json",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "pending_charger",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "pending_charger"
+        ]
+      ],
+      "source": "02_数据库脚本/A_场站设施与排队/01_schema.sql",
+      "line": 26
+    },
+    "tariff": {
+      "name": "tariff",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "fleet_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "starts",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "ends",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "service_mode",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "free_minutes",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "minimum",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "authorization_amount",
+          "type": "numeric(12,2)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 1
+    },
+    "tariff_band": {
+      "name": "tariff_band",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "tariff_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "minute_from",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "minute_to",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "label",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "energy_rate",
+          "type": "numeric(8,4)",
+          "required": true
+        },
+        {
+          "name": "service_rate",
+          "type": "numeric(8,4)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "tariff_id",
+        "minute_from"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 8
+    },
+    "charge_order": {
+      "name": "charge_order",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "connector_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "vehicle_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "tariff_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "fleet_card_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "budget_period",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "authorized_amount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "wallet_hold",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "fleet_hold",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "budget_exceeded",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "stop_requested_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "started_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "ended_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "start_soc",
+          "type": "numeric(5,2)",
+          "required": false
+        },
+        {
+          "name": "end_soc",
+          "type": "numeric(5,2)",
+          "required": false
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "kwh",
+          "type": "numeric(12,4)",
+          "required": false
+        },
+        {
+          "name": "gross",
+          "type": "numeric(12,2)",
+          "required": false
+        },
+        {
+          "name": "discount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "active_gun",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "active_gun"
+        ]
+      ],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 14
+    },
+    "meter_sample": {
+      "name": "meter_sample",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "sampled_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "reading",
+          "type": "numeric(14,4)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "order_id",
+        "sampled_at"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 34
+    },
+    "fee_detail": {
+      "name": "fee_detail",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "begins",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "ends",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "label",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "kwh",
+          "type": "numeric(12,4)",
+          "required": true
+        },
+        {
+          "name": "energy_rate",
+          "type": "numeric(8,4)",
+          "required": true
+        },
+        {
+          "name": "service_rate",
+          "type": "numeric(8,4)",
+          "required": true
+        },
+        {
+          "name": "energy",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "service",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "estimated",
+          "type": "boolean",
+          "required": true
+        }
+      ],
+      "pk": [
+        "order_id",
+        "begins"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 38
+    },
+    "order_review": {
+      "name": "order_review",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "reason",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "last_reading",
+          "type": "numeric(14,4)",
+          "required": true
+        },
+        {
+          "name": "adjustment",
+          "type": "numeric(12,2)",
+          "required": false
+        },
+        {
+          "name": "reviewed_by",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "reviewed_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "conclusion",
+          "type": "varchar(255)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "order_id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 44
+    },
+    "payment": {
+      "name": "payment",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "channel",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "reference",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "succeeded",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "happened_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "channel",
+          "reference"
+        ]
+      ],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 48
+    },
+    "refund": {
+      "name": "refund",
+      "owner": "B",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "payment_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "reference",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "varchar(32)",
+          "required": true
+        },
+        {
+          "name": "debt_reduction",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "happened_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "reference"
+        ]
+      ],
+      "source": "02_数据库脚本/B_充电订单与计费/03_schema.sql",
+      "line": 55
+    },
+    "telemetry": {
+      "name": "telemetry",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "charger_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "sampled_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "volts",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "amps",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "kw",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "temperature",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "offline_seconds",
+          "type": "integer",
+          "required": false
+        },
+        {
+          "name": "fault_code",
+          "type": "varchar(255)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "charger_id",
+        "sampled_at"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 1
+    },
+    "alarm_rule": {
+      "name": "alarm_rule",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "code",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "severity",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "response_minutes",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "pk": [
+        "code"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 8
+    },
+    "alarm": {
+      "name": "alarm",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "charger_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "connector_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "code",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "severity",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "opened_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "deadline",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "escalated_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "restored_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "live_charger",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        },
+        {
+          "name": "scope_connector",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "live_charger",
+          "scope_connector",
+          "code"
+        ]
+      ],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 12
+    },
+    "work_order": {
+      "name": "work_order",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "alarm_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "technician_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "assigned_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "accepted_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "arrived_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "repaired_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "closed_at",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "result",
+          "type": "varchar(255)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 18
+    },
+    "work_part": {
+      "name": "work_part",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "work_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "part",
+          "type": "varchar(255)",
+          "required": false
+        },
+        {
+          "name": "quantity",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "pk": [
+        "work_id",
+        "part"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 28
+    },
+    "alarm_notice": {
+      "name": "alarm_notice",
+      "owner": "C",
+      "columns": [
+        {
+          "name": "alarm_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "kind",
+          "type": "varchar(255)",
+          "required": false
+        },
+        {
+          "name": "created_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "alarm_id",
+        "kind"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql",
+      "line": 29
+    },
+    "account": {
+      "name": "account",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "login",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "password_hash",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "phone_cipher",
+          "type": "blob",
+          "required": false
+        },
+        {
+          "name": "phone_mask",
+          "type": "varchar(255)",
+          "required": false
+        },
+        {
+          "name": "verified",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "channel",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "registered_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "tier",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "balance",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "reserved_balance",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "failed_logins",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "locked_until",
+          "type": "datetime(6)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "login"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 1
+    },
+    "vehicle": {
+      "name": "vehicle",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "plate_cipher",
+          "type": "blob",
+          "required": false
+        },
+        {
+          "name": "plate_mask",
+          "type": "varchar(255)",
+          "required": false
+        },
+        {
+          "name": "model",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "capacity_kwh",
+          "type": "numeric(8,2)",
+          "required": true
+        },
+        {
+          "name": "max_kw",
+          "type": "numeric(8,2)",
+          "required": true
+        },
+        {
+          "name": "supports_dc",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "interface",
+          "type": "varchar(255)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 12
+    },
+    "vehicle_binding": {
+      "name": "vehicle_binding",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "vehicle_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "since",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "binding_end",
+          "type": "datetime(6)",
+          "required": false
+        },
+        {
+          "name": "current_vehicle",
+          "type": "bigint",
+          "required": false,
+          "generated": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "current_vehicle"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 17
+    },
+    "fleet": {
+      "name": "fleet",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "manager_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 22
+    },
+    "fleet_card": {
+      "name": "fleet_card",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "fleet_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "vehicle_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "driver_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "credit_limit",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "reserved_amount",
+          "type": "numeric(12,2)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 25
+    },
+    "campaign": {
+      "name": "campaign",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "tier",
+          "type": "varchar(255)",
+          "required": false
+        },
+        {
+          "name": "face",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "minimum",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "starts",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "expires",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "stock",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "opens",
+          "type": "time",
+          "required": true
+        },
+        {
+          "name": "closes",
+          "type": "time",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 31
+    },
+    "coupon": {
+      "name": "coupon",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "campaign_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "issued_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "campaign_id",
+          "account_id"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/02_schema.sql",
+      "line": 37
+    },
+    "wallet_entry": {
+      "name": "wallet_entry",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "payment_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "refund_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "change",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "happened_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "topup_ref",
+          "type": "varchar(64)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "payment_id"
+        ],
+        [
+          "refund_id"
+        ],
+        [
+          "topup_ref"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/05_members.sql",
+      "line": 1
+    },
+    "redemption": {
+      "name": "redemption",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "coupon_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "discount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "used_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "coupon_id"
+      ],
+      "unique": [
+        [
+          "order_id"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/05_members.sql",
+      "line": 9
+    },
+    "consumer_invoice_request": {
+      "name": "consumer_invoice_request",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "requested_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "order_id"
+        ]
+      ],
+      "source": "02_数据库脚本/D_用户与会员运营/05_members.sql",
+      "line": 13
+    },
+    "driver_feedback": {
+      "name": "driver_feedback",
+      "owner": "D",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "content",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/D_用户与会员运营/05_members.sql",
+      "line": 17
+    },
+    "settlement": {
+      "name": "settlement",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "station_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "operator_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "period",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime(6)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "operator_id",
+          "station_id",
+          "period"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 2
+    },
+    "settlement_item": {
+      "name": "settlement_item",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "source_period",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "kwh",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "energy_share",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "service_share",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "platform_fee",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "net_received",
+          "type": "decimal(18,4)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "settlement_id",
+        "order_id"
+      ],
+      "unique": [
+        [
+          "order_id"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 8
+    },
+    "settlement_import": {
+      "name": "settlement_import",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "batch",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "expected_rows",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "opened_at",
+          "type": "datetime(6)",
+          "required": true
+        },
+        {
+          "name": "completed_at",
+          "type": "datetime(6)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "settlement_id"
+      ],
+      "unique": [
+        [
+          "settlement_id",
+          "batch"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 15
+    },
+    "external_bill": {
+      "name": "external_bill",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "batch",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "kwh",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "paid",
+          "type": "boolean",
+          "required": true
+        }
+      ],
+      "pk": [
+        "settlement_id",
+        "order_id"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 21
+    },
+    "recon_diff": {
+      "name": "recon_diff",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "delta",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "expected_kwh",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "actual_kwh",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "expected_amount",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "actual_amount",
+          "type": "decimal(18,4)",
+          "required": false
+        },
+        {
+          "name": "proposed_adjustment",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "automatic_allowed",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "conclusion",
+          "type": "varchar(20)",
+          "required": false
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "settlement_id",
+          "order_id",
+          "kind"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 28
+    },
+    "diff_confirmation": {
+      "name": "diff_confirmation",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "diff_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "side",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "actor",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "conclusion",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "diff_id",
+        "side"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 36
+    },
+    "settlement_confirmation": {
+      "name": "settlement_confirmation",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "side",
+          "type": "varchar(20)",
+          "required": true
+        },
+        {
+          "name": "actor",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "settlement_id",
+        "side"
+      ],
+      "unique": [],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 42
+    },
+    "settlement_adjustment": {
+      "name": "settlement_adjustment",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "diff_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "refund_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "amount",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "reason",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "customer_reduction",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "energy_reversal",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "service_reversal",
+          "type": "decimal(18,4)",
+          "required": true
+        },
+        {
+          "name": "fee_reversal",
+          "type": "decimal(18,4)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "diff_id"
+        ],
+        [
+          "refund_id"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 47
+    },
+    "settlement_invoice": {
+      "name": "settlement_invoice",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "settlement_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "tax_id",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "numeric(12,2)",
+          "required": true
+        },
+        {
+          "name": "original_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "issued_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "original_id"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 57
+    },
+    "consumer_invoice": {
+      "name": "consumer_invoice",
+      "owner": "E",
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "request_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "order_id",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "tax_id",
+          "type": "varchar(255)",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "decimal(12,2)",
+          "required": true
+        },
+        {
+          "name": "original_id",
+          "type": "bigint",
+          "required": false
+        },
+        {
+          "name": "issued_by",
+          "type": "bigint",
+          "required": true
+        },
+        {
+          "name": "issued_at",
+          "type": "datetime(6)",
+          "required": true
+        }
+      ],
+      "pk": [
+        "id"
+      ],
+      "unique": [
+        [
+          "original_id"
+        ]
+      ],
+      "source": "02_数据库脚本/E_结算与对账/08_settlement.sql",
+      "line": 385
+    }
+  },
+  "relationships": [
+    {
+      "child": "queue_entry",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "queue_entry",
+      "columns": [
+        "vehicle_id"
+      ],
+      "parent": "vehicle",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "queue_entry",
+      "columns": [
+        "account_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "queue_call",
+      "columns": [
+        "entry_id"
+      ],
+      "parent": "queue_entry",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "queue_call",
+      "columns": [
+        "connector_id"
+      ],
+      "parent": "connector",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "gun_hold",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "gun_hold",
+      "columns": [
+        "call_id",
+        "connector_id"
+      ],
+      "parent": "queue_call",
+      "references": [
+        "id",
+        "connector_id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "station",
+      "columns": [
+        "operator_id"
+      ],
+      "parent": "operator",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charger",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "connector",
+      "columns": [
+        "charger_id"
+      ],
+      "parent": "charger",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "asset_history",
+      "columns": [
+        "charger_id"
+      ],
+      "parent": "charger",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "asset_history",
+      "columns": [
+        "connector_id"
+      ],
+      "parent": "connector",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "asset_request",
+      "columns": [
+        "charger_id"
+      ],
+      "parent": "charger",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "tariff",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "tariff",
+      "columns": [
+        "fleet_id"
+      ],
+      "parent": "fleet",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "tariff_band",
+      "columns": [
+        "tariff_id"
+      ],
+      "parent": "tariff",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "account_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "connector_id"
+      ],
+      "parent": "connector",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "vehicle_id"
+      ],
+      "parent": "vehicle",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "tariff_id"
+      ],
+      "parent": "tariff",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "fleet_card_id"
+      ],
+      "parent": "fleet_card",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "charge_order",
+      "columns": [
+        "operator_id"
+      ],
+      "parent": "operator",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "meter_sample",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "fee_detail",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "order_review",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "order_review",
+      "columns": [
+        "reviewed_by"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "payment",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "refund",
+      "columns": [
+        "payment_id"
+      ],
+      "parent": "payment",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "alarm",
+      "columns": [
+        "charger_id"
+      ],
+      "parent": "charger",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "alarm",
+      "columns": [
+        "connector_id"
+      ],
+      "parent": "connector",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "alarm",
+      "columns": [
+        "code"
+      ],
+      "parent": "alarm_rule",
+      "references": [
+        "code"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "work_order",
+      "columns": [
+        "alarm_id"
+      ],
+      "parent": "alarm",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "work_order",
+      "columns": [
+        "technician_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "work_part",
+      "columns": [
+        "work_id"
+      ],
+      "parent": "work_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "alarm_notice",
+      "columns": [
+        "alarm_id"
+      ],
+      "parent": "alarm",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "account",
+      "columns": [
+        "operator_id"
+      ],
+      "parent": "operator",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "account",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "vehicle_binding",
+      "columns": [
+        "vehicle_id"
+      ],
+      "parent": "vehicle",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "vehicle_binding",
+      "columns": [
+        "account_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "fleet",
+      "columns": [
+        "manager_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "fleet_card",
+      "columns": [
+        "fleet_id"
+      ],
+      "parent": "fleet",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "fleet_card",
+      "columns": [
+        "vehicle_id"
+      ],
+      "parent": "vehicle",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "fleet_card",
+      "columns": [
+        "driver_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "campaign",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "coupon",
+      "columns": [
+        "campaign_id"
+      ],
+      "parent": "campaign",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "coupon",
+      "columns": [
+        "account_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "wallet_entry",
+      "columns": [
+        "account_id"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "wallet_entry",
+      "columns": [
+        "payment_id"
+      ],
+      "parent": "payment",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "wallet_entry",
+      "columns": [
+        "refund_id"
+      ],
+      "parent": "refund",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "redemption",
+      "columns": [
+        "coupon_id"
+      ],
+      "parent": "coupon",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "redemption",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "consumer_invoice_request",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "driver_feedback",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement",
+      "columns": [
+        "station_id"
+      ],
+      "parent": "station",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement",
+      "columns": [
+        "operator_id"
+      ],
+      "parent": "operator",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_item",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_item",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "settlement_import",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": false
+    },
+    {
+      "child": "external_bill",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "external_bill",
+      "columns": [
+        "settlement_id",
+        "batch"
+      ],
+      "parent": "settlement_import",
+      "references": [
+        "settlement_id",
+        "batch"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "recon_diff",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "diff_confirmation",
+      "columns": [
+        "diff_id"
+      ],
+      "parent": "recon_diff",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "diff_confirmation",
+      "columns": [
+        "actor"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_confirmation",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_confirmation",
+      "columns": [
+        "actor"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_adjustment",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_adjustment",
+      "columns": [
+        "diff_id"
+      ],
+      "parent": "recon_diff",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "settlement_adjustment",
+      "columns": [
+        "refund_id"
+      ],
+      "parent": "refund",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "settlement_invoice",
+      "columns": [
+        "settlement_id"
+      ],
+      "parent": "settlement",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "settlement_invoice",
+      "columns": [
+        "original_id"
+      ],
+      "parent": "settlement_invoice",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "consumer_invoice",
+      "columns": [
+        "request_id"
+      ],
+      "parent": "consumer_invoice_request",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "consumer_invoice",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "consumer_invoice",
+      "columns": [
+        "original_id"
+      ],
+      "parent": "consumer_invoice",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": false,
+      "optional": true
+    },
+    {
+      "child": "consumer_invoice",
+      "columns": [
+        "issued_by"
+      ],
+      "parent": "account",
+      "references": [
+        "id"
+      ],
+      "kind": "physical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "telemetry",
+      "columns": [
+        "charger_id"
+      ],
+      "parent": "charger",
+      "references": [
+        "id"
+      ],
+      "kind": "logical",
+      "many": true,
+      "optional": false
+    },
+    {
+      "child": "external_bill",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "logical",
+      "optional_override": true,
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "recon_diff",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "logical",
+      "optional_override": true,
+      "many": true,
+      "optional": true
+    },
+    {
+      "child": "settlement_adjustment",
+      "columns": [
+        "order_id"
+      ],
+      "parent": "charge_order",
+      "references": [
+        "id"
+      ],
+      "kind": "logical",
+      "optional_override": true,
+      "many": true,
+      "optional": true
+    }
+  ],
+  "sql_sha256": {
+    "02_数据库脚本/A_场站设施与排队/04_queue.sql": "b1cb7a8346b4254e2ca78a54c42f602d90e8b588b727c02bcf361a7c03b2ab34",
+    "02_数据库脚本/A_场站设施与排队/01_schema.sql": "1937b9072fe469164b47a191640dbf9d39e94c851e03aa2246bc98e8f073d5e9",
+    "02_数据库脚本/B_充电订单与计费/03_schema.sql": "afd2266eaaffcab2f5ba6397cc2c69934ee3e01b661f3f411f3a575fbe9854c5",
+    "02_数据库脚本/B_充电订单与计费/06_payment.sql": "051b424506a682df1732b31f55e9f83f53dd026a930a756bc40905a1c922fadb",
+    "04_测试与验收/SQL回归/B_regression_funding.sql": "7bacd8eb42451fe7198ebe3f16f1d1d7407f2b9ba094a18956035e5fe64e514c",
+    "02_数据库脚本/C_设备监控与故障工单/07_monitor.sql": "eab91349b7b9f68f428eaaff586b0c3ebec2fcd32d3a7e631a8cebf0732f1d3c",
+    "04_测试与验收/SQL回归/C_regression_monitor.sql": "a743f50042676c1a4306965e5a6d2d81cf281fd0765e0501c5f11f36b8fc2892",
+    "02_数据库脚本/D_用户与会员运营/02_schema.sql": "f087b50d86149f40c2063041e371142ce4d2b67f7c716771344f76357cff45f4",
+    "02_数据库脚本/D_用户与会员运营/05_members.sql": "2c5ccde9e3b779092b001033dbe8ce6efeb59089dce472eeb12d99e1ac5d55b6",
+    "02_数据库脚本/D_用户与会员运营/10_wallet.sql": "5e382b9eddc68346d90050ce64ce132b40975afe0a09d7358e455dd757aa416d",
+    "02_数据库脚本/E_结算与对账/08_settlement.sql": "2c92d58de6b9cb816eece4088800e9548d21f8191460a351ef210e30d556a911",
+    "02_数据库脚本/E_结算与对账/audit_queries.sql": "3386d5f286d6b69076189b4e9bf1850edcd7aca1ca9a5fc7d6ec78b03ad72c47",
+    "04_测试与验收/SQL回归/E_regression_settlement.sql": "33094e8a8af056959df0094c80c295becdd25e8009b0f9b641f8809e7ee04471",
+    "04_测试与验收/SQL回归/regression_alarm_scope.sql": "b1b991800e55539d065d13e04baa6ba0d862e2dd58cf2afaf429c0b52b495c9d",
+    "04_测试与验收/SQL回归/regression_tariff_boundaries.sql": "92661ce785021995420fb5fa3ca8680fd90125e7a678de211efc03da0fcd696a",
+    "04_测试与验收/Workbench/Workbench后端演示.sql": "7d490fd55c2b394a469f6e9176407e3f88fd8739d998142203486b9d2d6108be",
+    "过程文件/历史记录/初版备份/charge_course_20261114.sql": "0d2721d59bc44c6eac0619200c9c80314e5f373faff616bbb2bbac13d69f9869",
+    "过程文件/历史记录/初版备份/恢复专用.sql": "0d2721d59bc44c6eac0619200c9c80314e5f373faff616bbb2bbac13d69f9869",
+    "05_备份与恢复/历史全量样例_20261114/charge_course_20261114.sql": "1eeb773e9c4f9bdfb1bfac06d4dde0cd8a565db69614a4d9ed3b38d62e1d8e13",
+    "05_备份与恢复/历史全量样例_20261114/恢复专用.sql": "1eeb773e9c4f9bdfb1bfac06d4dde0cd8a565db69614a4d9ed3b38d62e1d8e13"
+  },
+  "table_count": 44,
+  "relationship_count": 79
+}

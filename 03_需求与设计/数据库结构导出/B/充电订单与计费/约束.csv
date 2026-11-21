@@ -1,0 +1,60 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+charge_order,active_gun,UNIQUE,active_gun,,,
+charge_order,charge_order_chk_1,CHECK,,,,(`authorized_amount` >= 0)
+charge_order,charge_order_chk_10,CHECK,,,,(((`fleet_card_id` is null) and (`fleet_hold` = 0)) or ((`fleet_card_id` is not null) and (`wallet_hold` = 0)))
+charge_order,charge_order_chk_2,CHECK,,,,"(`state` in (_utf8mb4\'starting\',_utf8mb4\'charging\',_utf8mb4\'finishing\',_utf8mb4\'review\',_utf8mb4\'billed\',_utf8mb4\'paid\',_utf8mb4\'cancelled\'))"
+charge_order,charge_order_chk_3,CHECK,,,,(`kwh` >= 0)
+charge_order,charge_order_chk_4,CHECK,,,,(`gross` >= 0)
+charge_order,charge_order_chk_5,CHECK,,,,((`ended_at` is null) or (`ended_at` > `started_at`))
+charge_order,charge_order_chk_6,CHECK,,,,(`start_soc` between 0 and 100)
+charge_order,charge_order_chk_7,CHECK,,,,(`end_soc` between 0 and 100)
+charge_order,charge_order_chk_8,CHECK,,,,((`discount` >= 0) and ((`gross` is null) or (`discount` <= `gross`)))
+charge_order,charge_order_chk_9,CHECK,,,,((`wallet_hold` >= 0) and (`wallet_hold` <= `authorized_amount`) and (`fleet_hold` >= 0) and (`fleet_hold` <= `authorized_amount`))
+charge_order,charge_order_ibfk_1,FOREIGN KEY,account_id,account,id,
+charge_order,charge_order_ibfk_2,FOREIGN KEY,connector_id,connector,id,
+charge_order,charge_order_ibfk_3,FOREIGN KEY,vehicle_id,vehicle,id,
+charge_order,charge_order_ibfk_4,FOREIGN KEY,tariff_id,tariff,id,
+charge_order,charge_order_ibfk_5,FOREIGN KEY,fleet_card_id,fleet_card,id,
+charge_order,charge_order_ibfk_6,FOREIGN KEY,station_id,station,id,
+charge_order,charge_order_ibfk_7,FOREIGN KEY,operator_id,operator,id,
+charge_order,PRIMARY,PRIMARY KEY,id,,,
+fee_detail,fee_detail_chk_1,CHECK,,,,(`kwh` >= 0)
+fee_detail,fee_detail_chk_2,CHECK,,,,(`ends` > `begins`)
+fee_detail,fee_detail_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+fee_detail,PRIMARY,PRIMARY KEY,order_id,,,
+fee_detail,PRIMARY,PRIMARY KEY,begins,,,
+meter_sample,meter_sample_chk_1,CHECK,,,,(`reading` >= 0)
+meter_sample,meter_sample_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+meter_sample,PRIMARY,PRIMARY KEY,order_id,,,
+meter_sample,PRIMARY,PRIMARY KEY,sampled_at,,,
+order_review,order_review_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+order_review,order_review_ibfk_2,FOREIGN KEY,reviewed_by,account,id,
+order_review,PRIMARY,PRIMARY KEY,order_id,,,
+payment,channel,UNIQUE,channel,,,
+payment,channel,UNIQUE,reference,,,
+payment,payment_chk_1,CHECK,,,,"(`channel` in (_utf8mb4\'mock\',_utf8mb4\'wallet\'))"
+payment,payment_chk_2,CHECK,,,,(`amount` > 0)
+payment,payment_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+payment,PRIMARY,PRIMARY KEY,id,,,
+refund,PRIMARY,PRIMARY KEY,id,,,
+refund,reference,UNIQUE,reference,,,
+refund,refund_chk_1,CHECK,,,,(`amount` > 0)
+refund,refund_chk_2,CHECK,,,,"(`kind` in (_utf8mb4\'price_adjustment\',_utf8mb4\'payment_reversal\'))"
+refund,refund_chk_3,CHECK,,,,((`debt_reduction` >= 0) and (`debt_reduction` <= `amount`))
+refund,refund_chk_4,CHECK,,,,(((`kind` = _utf8mb4\'price_adjustment\') and (`debt_reduction` = `amount`)) or ((`kind` = _utf8mb4\'payment_reversal\') and (`debt_reduction` = 0)))
+refund,refund_ibfk_1,FOREIGN KEY,payment_id,payment,id,
+tariff,PRIMARY,PRIMARY KEY,id,,,
+tariff,tariff_chk_1,CHECK,,,,"(`service_mode` in (_utf8mb4\'kwh\',_utf8mb4\'hour\'))"
+tariff,tariff_chk_2,CHECK,,,,(`free_minutes` >= 0)
+tariff,tariff_chk_3,CHECK,,,,(`minimum` >= 0)
+tariff,tariff_chk_4,CHECK,,,,(`authorization_amount` > 0)
+tariff,tariff_chk_5,CHECK,,,,(`ends` > `starts`)
+tariff,tariff_ibfk_1,FOREIGN KEY,station_id,station,id,
+tariff,tariff_ibfk_2,FOREIGN KEY,fleet_id,fleet,id,
+tariff_band,PRIMARY,PRIMARY KEY,tariff_id,,,
+tariff_band,PRIMARY,PRIMARY KEY,minute_from,,,
+tariff_band,tariff_band_chk_1,CHECK,,,,"(`label` in (_utf8mb4\'peak\',_utf8mb4\'flat\',_utf8mb4\'valley\'))"
+tariff_band,tariff_band_chk_2,CHECK,,,,(`energy_rate` >= 0)
+tariff_band,tariff_band_chk_3,CHECK,,,,(`service_rate` >= 0)
+tariff_band,tariff_band_chk_4,CHECK,,,,((0 <= `minute_from`) and (`minute_from` < `minute_to`) and (`minute_to` <= 1440))
+tariff_band,tariff_band_ibfk_1,FOREIGN KEY,tariff_id,tariff,id,

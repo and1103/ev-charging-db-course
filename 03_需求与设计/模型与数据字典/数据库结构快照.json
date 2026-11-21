@@ -1,0 +1,5576 @@
+{
+  "version": "8.4.13",
+  "database": "charge_course_20261114",
+  "tables": [
+    "account",
+    "alarm",
+    "alarm_notice",
+    "alarm_rule",
+    "asset_history",
+    "asset_request",
+    "campaign",
+    "charge_order",
+    "charger",
+    "connector",
+    "consumer_invoice",
+    "consumer_invoice_request",
+    "coupon",
+    "diff_confirmation",
+    "driver_feedback",
+    "external_bill",
+    "fee_detail",
+    "fleet",
+    "fleet_card",
+    "gun_hold",
+    "meter_sample",
+    "operator",
+    "order_review",
+    "payment",
+    "queue_call",
+    "queue_entry",
+    "recon_diff",
+    "redemption",
+    "refund",
+    "settlement",
+    "settlement_adjustment",
+    "settlement_confirmation",
+    "settlement_import",
+    "settlement_invoice",
+    "settlement_item",
+    "station",
+    "tariff",
+    "tariff_band",
+    "telemetry",
+    "vehicle",
+    "vehicle_binding",
+    "wallet_entry",
+    "work_order",
+    "work_part"
+  ],
+  "columns": [
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "login",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "password_hash",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "role",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "phone_cipher",
+      "COLUMN_TYPE": "blob",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "phone_mask",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "verified",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "channel",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "local",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "registered_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "tier",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "regular",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "balance",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "reserved_balance",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "failed_logins",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "locked_until",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "code",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "severity",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "opened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "deadline",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "escalated_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "restored_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "live_charger",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "scope_connector",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "alarm_notice",
+      "COLUMN_NAME": "alarm_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm_notice",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm_notice",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "alarm_rule",
+      "COLUMN_NAME": "code",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm_rule",
+      "COLUMN_NAME": "severity",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "alarm_rule",
+      "COLUMN_NAME": "response_minutes",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "old_state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "new_state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "happened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "payload",
+      "COLUMN_TYPE": "json",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "json_object()",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "pending",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "pending_charger",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "tier",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "face",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "minimum",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "starts",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "expires",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "stock",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "opens",
+      "COLUMN_TYPE": "time",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "00:00:00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "closes",
+      "COLUMN_TYPE": "time",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "00:00:00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_migration",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "tariff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "fleet_card_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "budget_period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "2000-01-01",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "authorized_amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "wallet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "fleet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "budget_exceeded",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "stop_requested_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "started_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "ended_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "start_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "end_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(12,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "gross",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "discount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "active_gun",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "model",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "rated_kw",
+      "COLUMN_TYPE": "decimal(8,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "protocol",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "commissioned_on",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "warranty_until",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "heartbeat",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "offline",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "gun_position",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "interface",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "max_kw",
+      "COLUMN_TYPE": "decimal(8,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "offline",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "request_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "title",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "tax_id",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "original_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "issued_by",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "issued_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "title",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "pending",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "requested_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "campaign_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "issued_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "diff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "side",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "actor",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "conclusion",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "confirmed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "content",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "batch",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "paid",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "begins",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "ends",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "label",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(12,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "energy_rate",
+      "COLUMN_TYPE": "decimal(8,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "service_rate",
+      "COLUMN_TYPE": "decimal(8,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "energy",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "service",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "estimated",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "fleet",
+      "COLUMN_NAME": "manager_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "fleet_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "driver_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "credit_limit",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "enabled",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "1",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "reserved_amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "call_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "active_gun",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "meter_sample",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "meter_sample",
+      "COLUMN_NAME": "sampled_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "meter_sample",
+      "COLUMN_NAME": "reading",
+      "COLUMN_TYPE": "decimal(14,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "operator",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "operator",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "reason",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "last_reading",
+      "COLUMN_TYPE": "decimal(14,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "adjustment",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "reviewed_by",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "reviewed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "conclusion",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "channel",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "reference",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "succeeded",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "happened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "entry_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "called_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "deadline",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "notified_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "queued_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "waiting",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "active_vehicle",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "delta",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "expected_kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "actual_kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "expected_amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "actual_amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "proposed_adjustment",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "automatic_allowed",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "1",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "conclusion",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "coupon_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "discount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "used_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "payment_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "reference",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(32)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "price_adjustment",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "debt_reduction",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "happened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "draft",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "confirmed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "diff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "refund_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "reason",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "customer_reduction",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "energy_reversal",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "service_reversal",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "fee_reversal",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "side",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "actor",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "confirmed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "batch",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "expected_rows",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "open",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "opened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "completed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "title",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "tax_id",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "original_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "issued_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "source_period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "energy_share",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "service_share",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "platform_fee",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "net_received",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "address",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "longitude",
+      "COLUMN_TYPE": "decimal(9,6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "latitude",
+      "COLUMN_TYPE": "decimal(8,6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "spaces",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "opens",
+      "COLUMN_TYPE": "time",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "00:00:00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "closes",
+      "COLUMN_TYPE": "time",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "00:00:00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "parking_note",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "enabled",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "1",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "fleet_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "starts",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "ends",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "service_mode",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "free_minutes",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "minimum",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "authorization_amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "20.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "tariff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "minute_from",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "minute_to",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "label",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "energy_rate",
+      "COLUMN_TYPE": "decimal(8,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "service_rate",
+      "COLUMN_TYPE": "decimal(8,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "sampled_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "volts",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "amps",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "kw",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "temperature",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "offline_seconds",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "telemetry",
+      "COLUMN_NAME": "fault_code",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "old_state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "new_state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "happened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_asset_history",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "service_day",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "label",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(34,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "energy",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_band_income",
+      "COLUMN_NAME": "service",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_campaign_stats",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_campaign_stats",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_campaign_stats",
+      "COLUMN_NAME": "issued",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_campaign_stats",
+      "COLUMN_NAME": "redeemed",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_campaign_stats",
+      "COLUMN_NAME": "discount",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_consumer_invoice_balance",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_consumer_invoice_balance",
+      "COLUMN_NAME": "limit_amount",
+      "COLUMN_TYPE": "decimal(35,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_consumer_invoice_balance",
+      "COLUMN_NAME": "invoiced",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_consumer_invoice_balance",
+      "COLUMN_NAME": "remaining",
+      "COLUMN_TYPE": "decimal(36,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "fleet_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "2000-01-01",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "orders",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(57,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "paid",
+      "COLUMN_TYPE": "decimal(57,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_fleet_month",
+      "COLUMN_NAME": "outstanding",
+      "COLUMN_TYPE": "decimal(59,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "interface",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "max_kw",
+      "COLUMN_TYPE": "decimal(8,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "offline",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "heartbeat",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "ready",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "call_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_gun_state",
+      "COLUMN_NAME": "deadline",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "draft",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0000-00-00 00:00:00.000000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "confirmed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "energy_share",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "service_share",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "platform_fee",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "due",
+      "COLUMN_TYPE": "decimal(43,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "orders",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "invoiced",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_invoice_balance",
+      "COLUMN_NAME": "remaining",
+      "COLUMN_TYPE": "decimal(44,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "code",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "severity",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "opened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0000-00-00 00:00:00.000000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "deadline",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "escalated_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "restored_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "live_charger",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "scope_connector",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_late_alarm",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "code",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "severity",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "opened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "deadline",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "escalated_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "restored_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "live_charger",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "scope_connector",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_live_alarm",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "login",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "phone_mask",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "verified",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "tier",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "regular",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_member_mask",
+      "COLUMN_NAME": "registered_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "tariff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "fleet_card_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "budget_period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "2000-01-01",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "authorized_amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "wallet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "fleet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "budget_exceeded",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "stop_requested_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "started_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "ended_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "start_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "end_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(12,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "gross",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "discount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "active_gun",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "received",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "refunded",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "refund_adjustment",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "net_due",
+      "COLUMN_TYPE": "decimal(35,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_order_balance",
+      "COLUMN_NAME": "outstanding",
+      "COLUMN_TYPE": "decimal(37,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "kind",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "delta",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "expected_kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "actual_kwh",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "expected_amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "actual_amount",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "proposed_adjustment",
+      "COLUMN_TYPE": "decimal(18,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "automatic_allowed",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "1",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_pending_diff",
+      "COLUMN_NAME": "conclusion",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_queue_station",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_queue_station",
+      "COLUMN_NAME": "available",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_queue_station",
+      "COLUMN_NAME": "waiting",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_recon_expected",
+      "COLUMN_NAME": "settlement_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_recon_expected",
+      "COLUMN_NAME": "order_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_recon_expected",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_recon_expected",
+      "COLUMN_NAME": "amount",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_recon_expected",
+      "COLUMN_NAME": "merchant_due",
+      "COLUMN_TYPE": "decimal(42,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "alarm_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "technician_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "assigned_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "accepted_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "arrived_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "repaired_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "closed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "result",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "charger_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_repair_time",
+      "COLUMN_NAME": "duration",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(20)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "draft",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "created_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "confirmed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "energy_share",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "service_share",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "platform_fee",
+      "COLUMN_TYPE": "decimal(40,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "due",
+      "COLUMN_TYPE": "decimal(43,4)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.0000",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_settlement",
+      "COLUMN_NAME": "orders",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "address",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "parking_note",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "enabled",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "1",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_station_availability",
+      "COLUMN_NAME": "available",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "connector_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "tariff_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "fleet_card_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "operator_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "budget_period",
+      "COLUMN_TYPE": "date",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "2000-01-01",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "authorized_amount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "wallet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "fleet_hold",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "budget_exceeded",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "stop_requested_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "started_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "ended_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "start_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "end_soc",
+      "COLUMN_TYPE": "decimal(5,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "state",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "kwh",
+      "COLUMN_TYPE": "decimal(12,4)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "gross",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "discount",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "active_gun",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "received",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "refunded",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "refund_adjustment",
+      "COLUMN_TYPE": "decimal(34,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0.00",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "net_due",
+      "COLUMN_TYPE": "decimal(35,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unpaid_order",
+      "COLUMN_NAME": "outstanding",
+      "COLUMN_TYPE": "decimal(37,2)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "0",
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "campaign_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "issued_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "name",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "station_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "face",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "minimum",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "v_unused_coupon",
+      "COLUMN_NAME": "expires",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "plate_cipher",
+      "COLUMN_TYPE": "blob",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "plate_mask",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "model",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "capacity_kwh",
+      "COLUMN_TYPE": "decimal(8,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "max_kw",
+      "COLUMN_TYPE": "decimal(8,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "supports_dc",
+      "COLUMN_TYPE": "tinyint(1)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle",
+      "COLUMN_NAME": "interface",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "vehicle_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "since",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "binding_end",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "current_vehicle",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": "STORED GENERATED"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "account_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "payment_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "refund_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "change",
+      "COLUMN_TYPE": "decimal(12,2)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "happened_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "topup_ref",
+      "COLUMN_TYPE": "varchar(64)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "UNI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": "auto_increment"
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "alarm_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "technician_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "MUL",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "assigned_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": "CURRENT_TIMESTAMP(6)",
+      "COLUMN_KEY": "",
+      "EXTRA": "DEFAULT_GENERATED"
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "accepted_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "arrived_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "repaired_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "closed_at",
+      "COLUMN_TYPE": "datetime(6)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "result",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "YES",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_part",
+      "COLUMN_NAME": "work_id",
+      "COLUMN_TYPE": "bigint",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_part",
+      "COLUMN_NAME": "part",
+      "COLUMN_TYPE": "varchar(255)",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "PRI",
+      "EXTRA": ""
+    },
+    {
+      "TABLE_NAME": "work_part",
+      "COLUMN_NAME": "quantity",
+      "COLUMN_TYPE": "int",
+      "IS_NULLABLE": "NO",
+      "COLUMN_DEFAULT": null,
+      "COLUMN_KEY": "",
+      "EXTRA": ""
+    }
+  ],
+  "foreign_keys": [
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "operator_id",
+      "REFERENCED_TABLE_NAME": "operator",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "account_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "account",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "account_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "connector_id",
+      "REFERENCED_TABLE_NAME": "connector",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "alarm_connector_fk"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "charger_id",
+      "REFERENCED_TABLE_NAME": "charger",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "alarm_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "alarm",
+      "COLUMN_NAME": "code",
+      "REFERENCED_TABLE_NAME": "alarm_rule",
+      "REFERENCED_COLUMN_NAME": "code",
+      "CONSTRAINT_NAME": "alarm_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "alarm_notice",
+      "COLUMN_NAME": "alarm_id",
+      "REFERENCED_TABLE_NAME": "alarm",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "alarm_notice_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "charger_id",
+      "REFERENCED_TABLE_NAME": "charger",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "asset_history_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "asset_history",
+      "COLUMN_NAME": "connector_id",
+      "REFERENCED_TABLE_NAME": "connector",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "asset_history_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "asset_request",
+      "COLUMN_NAME": "charger_id",
+      "REFERENCED_TABLE_NAME": "charger",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "asset_request_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "campaign",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "campaign_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "account_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "connector_id",
+      "REFERENCED_TABLE_NAME": "connector",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "vehicle_id",
+      "REFERENCED_TABLE_NAME": "vehicle",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "tariff_id",
+      "REFERENCED_TABLE_NAME": "tariff",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_4"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "fleet_card_id",
+      "REFERENCED_TABLE_NAME": "fleet_card",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_5"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_6"
+    },
+    {
+      "TABLE_NAME": "charge_order",
+      "COLUMN_NAME": "operator_id",
+      "REFERENCED_TABLE_NAME": "operator",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charge_order_ibfk_7"
+    },
+    {
+      "TABLE_NAME": "charger",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "charger_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "connector",
+      "COLUMN_NAME": "charger_id",
+      "REFERENCED_TABLE_NAME": "charger",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "connector_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "request_id",
+      "REFERENCED_TABLE_NAME": "consumer_invoice_request",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "consumer_invoice_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "consumer_invoice_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "original_id",
+      "REFERENCED_TABLE_NAME": "consumer_invoice",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "consumer_invoice_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice",
+      "COLUMN_NAME": "issued_by",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "consumer_invoice_ibfk_4"
+    },
+    {
+      "TABLE_NAME": "consumer_invoice_request",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "consumer_invoice_request_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "campaign_id",
+      "REFERENCED_TABLE_NAME": "campaign",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "coupon_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "coupon",
+      "COLUMN_NAME": "account_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "coupon_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "diff_id",
+      "REFERENCED_TABLE_NAME": "recon_diff",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "diff_confirmation_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "diff_confirmation",
+      "COLUMN_NAME": "actor",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "diff_confirmation_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "driver_feedback",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "driver_feedback_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "external_bill_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement_import",
+      "REFERENCED_COLUMN_NAME": "settlement_id",
+      "CONSTRAINT_NAME": "external_bill_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "external_bill",
+      "COLUMN_NAME": "batch",
+      "REFERENCED_TABLE_NAME": "settlement_import",
+      "REFERENCED_COLUMN_NAME": "batch",
+      "CONSTRAINT_NAME": "external_bill_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "fee_detail",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "fee_detail_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "fleet",
+      "COLUMN_NAME": "manager_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "fleet_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "fleet_id",
+      "REFERENCED_TABLE_NAME": "fleet",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "fleet_card_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "vehicle_id",
+      "REFERENCED_TABLE_NAME": "vehicle",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "fleet_card_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "fleet_card",
+      "COLUMN_NAME": "driver_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "fleet_card_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "gun_hold_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "call_id",
+      "REFERENCED_TABLE_NAME": "queue_call",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "gun_hold_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "gun_hold",
+      "COLUMN_NAME": "connector_id",
+      "REFERENCED_TABLE_NAME": "queue_call",
+      "REFERENCED_COLUMN_NAME": "connector_id",
+      "CONSTRAINT_NAME": "gun_hold_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "meter_sample",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "meter_sample_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "order_review_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "order_review",
+      "COLUMN_NAME": "reviewed_by",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "order_review_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "payment",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "payment_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "entry_id",
+      "REFERENCED_TABLE_NAME": "queue_entry",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "queue_call_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "queue_call",
+      "COLUMN_NAME": "connector_id",
+      "REFERENCED_TABLE_NAME": "connector",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "queue_call_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "queue_entry_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "vehicle_id",
+      "REFERENCED_TABLE_NAME": "vehicle",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "queue_entry_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "queue_entry",
+      "COLUMN_NAME": "account_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "queue_entry_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "recon_diff",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "recon_diff_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "coupon_id",
+      "REFERENCED_TABLE_NAME": "coupon",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "redemption_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "redemption",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "redemption_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "refund",
+      "COLUMN_NAME": "payment_id",
+      "REFERENCED_TABLE_NAME": "payment",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "refund_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement",
+      "COLUMN_NAME": "operator_id",
+      "REFERENCED_TABLE_NAME": "operator",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_adjustment_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "diff_id",
+      "REFERENCED_TABLE_NAME": "recon_diff",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_adjustment_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "settlement_adjustment",
+      "COLUMN_NAME": "refund_id",
+      "REFERENCED_TABLE_NAME": "refund",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_adjustment_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_confirmation_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement_confirmation",
+      "COLUMN_NAME": "actor",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_confirmation_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "settlement_import",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_import_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_invoice_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement_invoice",
+      "COLUMN_NAME": "original_id",
+      "REFERENCED_TABLE_NAME": "settlement_invoice",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_invoice_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "settlement_id",
+      "REFERENCED_TABLE_NAME": "settlement",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_item_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "settlement_item",
+      "COLUMN_NAME": "order_id",
+      "REFERENCED_TABLE_NAME": "charge_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "settlement_item_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "station",
+      "COLUMN_NAME": "operator_id",
+      "REFERENCED_TABLE_NAME": "operator",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "station_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "station_id",
+      "REFERENCED_TABLE_NAME": "station",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "tariff_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "tariff",
+      "COLUMN_NAME": "fleet_id",
+      "REFERENCED_TABLE_NAME": "fleet",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "tariff_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "tariff_band",
+      "COLUMN_NAME": "tariff_id",
+      "REFERENCED_TABLE_NAME": "tariff",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "tariff_band_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "vehicle_id",
+      "REFERENCED_TABLE_NAME": "vehicle",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "vehicle_binding_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "vehicle_binding",
+      "COLUMN_NAME": "account_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "vehicle_binding_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "account_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "wallet_entry_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "payment_id",
+      "REFERENCED_TABLE_NAME": "payment",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "wallet_entry_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "wallet_entry",
+      "COLUMN_NAME": "refund_id",
+      "REFERENCED_TABLE_NAME": "refund",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "wallet_entry_ibfk_3"
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "alarm_id",
+      "REFERENCED_TABLE_NAME": "alarm",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "work_order_ibfk_1"
+    },
+    {
+      "TABLE_NAME": "work_order",
+      "COLUMN_NAME": "technician_id",
+      "REFERENCED_TABLE_NAME": "account",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "work_order_ibfk_2"
+    },
+    {
+      "TABLE_NAME": "work_part",
+      "COLUMN_NAME": "work_id",
+      "REFERENCED_TABLE_NAME": "work_order",
+      "REFERENCED_COLUMN_NAME": "id",
+      "CONSTRAINT_NAME": "work_part_ibfk_1"
+    }
+  ],
+  "row_counts": {
+    "account": 82,
+    "alarm": 20,
+    "alarm_notice": 20,
+    "alarm_rule": 20,
+    "asset_history": 36,
+    "asset_request": 20,
+    "campaign": 20,
+    "charge_order": 88,
+    "charger": 20,
+    "connector": 40,
+    "consumer_invoice": 40,
+    "consumer_invoice_request": 20,
+    "coupon": 20,
+    "diff_confirmation": 40,
+    "driver_feedback": 20,
+    "external_bill": 40,
+    "fee_detail": 120,
+    "fleet": 20,
+    "fleet_card": 20,
+    "gun_hold": 20,
+    "meter_sample": 200,
+    "operator": 20,
+    "order_review": 20,
+    "payment": 60,
+    "queue_call": 20,
+    "queue_entry": 20,
+    "recon_diff": 20,
+    "redemption": 20,
+    "refund": 20,
+    "settlement": 20,
+    "settlement_adjustment": 40,
+    "settlement_confirmation": 40,
+    "settlement_import": 20,
+    "settlement_invoice": 40,
+    "settlement_item": 40,
+    "station": 20,
+    "tariff": 20,
+    "tariff_band": 60,
+    "telemetry": 20,
+    "vehicle": 20,
+    "vehicle_binding": 20,
+    "wallet_entry": 40,
+    "work_order": 20,
+    "work_part": 20
+  },
+  "routines": [
+    {
+      "ROUTINE_NAME": "assign_gun",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "compatible",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "estimate_charge",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "in_hours",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "issue_coupon",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "meter_at",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "mock_wallet_topup",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "open_charge",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "order_cost_until",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "post_payment",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "post_refund",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "post_refund_kind",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "raise_alarm",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "raise_alarm_scope",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "take_queue",
+      "ROUTINE_TYPE": "FUNCTION"
+    },
+    {
+      "ROUTINE_NAME": "approve_review",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "assert_draft_settlement",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "authorize_more",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "begin_bill_import",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "build_settlement",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "check_binding",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "check_fleet_credit_current",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "check_order_reservation",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "commission_charger",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "compare_settlement",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "confirm_difference",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "confirm_settlement",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "dispatch_station",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "escalate_alarms",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "finish_charge",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "inspect_charge_budget",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "issue_consumer_invoice",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "process_charger",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "recover_alarm",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "redeem_coupon",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "reset_bill_import",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "reverse_consumer_invoice",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "scan_offline",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "validate_band",
+      "ROUTINE_TYPE": "PROCEDURE"
+    },
+    {
+      "ROUTINE_NAME": "validate_tariff",
+      "ROUTINE_TYPE": "PROCEDURE"
+    }
+  ],
+  "views": [
+    "v_asset_history",
+    "v_band_income",
+    "v_campaign_stats",
+    "v_consumer_invoice_balance",
+    "v_fleet_month",
+    "v_gun_state",
+    "v_invoice_balance",
+    "v_late_alarm",
+    "v_live_alarm",
+    "v_member_mask",
+    "v_order_balance",
+    "v_pending_diff",
+    "v_queue_station",
+    "v_recon_expected",
+    "v_repair_time",
+    "v_settlement",
+    "v_station_availability",
+    "v_unpaid_order",
+    "v_unused_coupon"
+  ],
+  "triggers": [
+    "alarm_connector_insert",
+    "alarm_connector_update",
+    "band_delete",
+    "band_insert",
+    "band_update",
+    "binding_insert",
+    "binding_update",
+    "charger_history",
+    "charger_power",
+    "charger_telemetry_delete",
+    "connector_history",
+    "connector_power",
+    "connector_power_update",
+    "consumer_invoice_delete_guard",
+    "consumer_invoice_insert_guard",
+    "consumer_invoice_update_guard",
+    "diff_confirmation_delete_guard",
+    "diff_confirmation_insert_guard",
+    "diff_confirmation_update_guard",
+    "external_bill_delete_guard",
+    "external_bill_insert_guard",
+    "external_bill_update_guard",
+    "invoice_delete_guard",
+    "invoice_limit",
+    "invoice_update_guard",
+    "order_funding_insert",
+    "order_funding_update",
+    "order_reserve_delete",
+    "order_reserve_insert",
+    "order_reserve_update",
+    "recon_diff_delete_guard",
+    "recon_diff_insert_guard",
+    "recon_diff_update_guard",
+    "refund_invoice_guard",
+    "settlement_adjustment_delete_guard",
+    "settlement_adjustment_insert_guard",
+    "settlement_adjustment_update_guard",
+    "settlement_confirmation_delete_guard",
+    "settlement_confirmation_insert_guard",
+    "settlement_confirmation_update_guard",
+    "settlement_delete_guard",
+    "settlement_import_delete_guard",
+    "settlement_import_insert_guard",
+    "settlement_import_update_guard",
+    "settlement_item_delete_guard",
+    "settlement_item_insert_guard",
+    "settlement_item_update_guard",
+    "settlement_state_guard",
+    "tariff_insert",
+    "tariff_update",
+    "telemetry_charger",
+    "telemetry_charger_update",
+    "work_assign",
+    "work_flow"
+  ]
+}

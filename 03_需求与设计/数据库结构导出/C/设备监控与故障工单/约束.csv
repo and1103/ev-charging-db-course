@@ -1,0 +1,30 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+alarm,alarm_chk_1,CHECK,,,,(`severity` between 1 and 5)
+alarm,alarm_connector_fk,FOREIGN KEY,connector_id,connector,id,
+alarm,alarm_ibfk_1,FOREIGN KEY,charger_id,charger,id,
+alarm,alarm_ibfk_2,FOREIGN KEY,code,alarm_rule,code,
+alarm,alarm_positive_connector,CHECK,,,,((`connector_id` is null) or (`connector_id` > 0))
+alarm,one_live_alarm,UNIQUE,live_charger,,,
+alarm,one_live_alarm,UNIQUE,scope_connector,,,
+alarm,one_live_alarm,UNIQUE,code,,,
+alarm,PRIMARY,PRIMARY KEY,id,,,
+alarm_notice,alarm_notice_ibfk_1,FOREIGN KEY,alarm_id,alarm,id,
+alarm_notice,PRIMARY,PRIMARY KEY,alarm_id,,,
+alarm_notice,PRIMARY,PRIMARY KEY,kind,,,
+alarm_rule,alarm_rule_chk_1,CHECK,,,,(`severity` between 1 and 5)
+alarm_rule,alarm_rule_chk_2,CHECK,,,,(`response_minutes` > 0)
+alarm_rule,PRIMARY,PRIMARY KEY,code,,,
+telemetry,PRIMARY,PRIMARY KEY,charger_id,,,
+telemetry,PRIMARY,PRIMARY KEY,sampled_at,,,
+telemetry,telemetry_chk_1,CHECK,,,,(`offline_seconds` >= 0)
+work_order,PRIMARY,PRIMARY KEY,id,,,
+work_order,work_order_chk_1,CHECK,,,,((`accepted_at` is null) or (`accepted_at` >= `assigned_at`))
+work_order,work_order_chk_2,CHECK,,,,((`arrived_at` is null) or ((`accepted_at` is not null) and (`arrived_at` >= `accepted_at`)))
+work_order,work_order_chk_3,CHECK,,,,((`repaired_at` is null) or ((`arrived_at` is not null) and (`repaired_at` >= `arrived_at`)))
+work_order,work_order_chk_4,CHECK,,,,((`closed_at` is null) or ((`repaired_at` is not null) and (`closed_at` >= `repaired_at`) and (`result` is not null)))
+work_order,work_order_ibfk_1,FOREIGN KEY,alarm_id,alarm,id,
+work_order,work_order_ibfk_2,FOREIGN KEY,technician_id,account,id,
+work_part,PRIMARY,PRIMARY KEY,work_id,,,
+work_part,PRIMARY,PRIMARY KEY,part,,,
+work_part,work_part_chk_1,CHECK,,,,(`quantity` > 0)
+work_part,work_part_ibfk_1,FOREIGN KEY,work_id,work_order,id,

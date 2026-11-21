@@ -1,0 +1,15 @@
+﻿表,索引名,字段,非唯一,列顺序
+asset_history,charger_id,charger_id,1,1
+asset_history,connector_id,connector_id,1,1
+asset_history,PRIMARY,id,0,1
+asset_request,charger_id,charger_id,1,1
+asset_request,pending_charger,pending_charger,0,1
+asset_request,PRIMARY,id,0,1
+charger,PRIMARY,id,0,1
+charger,station_id,station_id,1,1
+connector,charger_id,charger_id,0,1
+connector,charger_id,gun_position,0,2
+connector,PRIMARY,id,0,1
+operator,PRIMARY,id,0,1
+station,operator_id,operator_id,1,1
+station,PRIMARY,id,0,1

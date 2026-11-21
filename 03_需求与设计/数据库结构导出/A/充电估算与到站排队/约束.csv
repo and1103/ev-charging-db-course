@@ -1,0 +1,21 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+gun_hold,active_gun,UNIQUE,active_gun,,,
+gun_hold,gun_hold_chk_1,CHECK,,,,"(`state` in (_utf8mb4\'held\',_utf8mb4\'used\',_utf8mb4\'expired\',_utf8mb4\'released\'))"
+gun_hold,gun_hold_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+gun_hold,gun_hold_ibfk_2,FOREIGN KEY,call_id,queue_call,id,
+gun_hold,gun_hold_ibfk_2,FOREIGN KEY,connector_id,queue_call,connector_id,
+gun_hold,order_id,UNIQUE,order_id,,,
+gun_hold,PRIMARY,PRIMARY KEY,call_id,,,
+queue_call,id,UNIQUE,id,,,
+queue_call,id,UNIQUE,connector_id,,,
+queue_call,PRIMARY,PRIMARY KEY,id,,,
+queue_call,queue_call_chk_1,CHECK,,,,(`deadline` > `called_at`)
+queue_call,queue_call_ibfk_1,FOREIGN KEY,entry_id,queue_entry,id,
+queue_call,queue_call_ibfk_2,FOREIGN KEY,connector_id,connector,id,
+queue_entry,one_queue,UNIQUE,station_id,,,
+queue_entry,one_queue,UNIQUE,active_vehicle,,,
+queue_entry,PRIMARY,PRIMARY KEY,id,,,
+queue_entry,queue_entry_chk_1,CHECK,,,,"(`state` in (_utf8mb4\'waiting\',_utf8mb4\'called\',_utf8mb4\'converted\',_utf8mb4\'expired\',_utf8mb4\'cancelled\'))"
+queue_entry,queue_entry_ibfk_1,FOREIGN KEY,station_id,station,id,
+queue_entry,queue_entry_ibfk_2,FOREIGN KEY,vehicle_id,vehicle,id,
+queue_entry,queue_entry_ibfk_3,FOREIGN KEY,account_id,account,id,

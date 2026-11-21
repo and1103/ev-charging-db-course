@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-11-16T14:12:39",
+  "edition": "数据库设计第二版",
+  "authoritative_application": "01_平台工程",
+  "canonical_database_scripts": "02_数据库脚本",
+  "integration_tests_passed": true,
+  "counts": {
+    "business_tables": 44,
+    "base_columns": 320,
+    "views": 19,
+    "procedures": 25,
+    "functions": 15,
+    "declared_triggers": 54,
+    "formal_png_figures": 34,
+    "unit_tests": 22,
+    "real_database_api_tests": 34,
+    "http_checks": 18,
+    "dom_scenarios": 66,
+    "query_pairs": 15,
+    "client_contract_checks": 16
+  },
+  "trigger_metadata": {
+    "status": "not_verified",
+    "visible_triggers": [],
+    "visible_count": 0,
+    "ddl_declared_count": 54,
+    "reason": "Application metadata visibility is insufficient for a complete trigger inventory; no live trigger pass is claimed.",
+    "missing_from_visible": null,
+    "unexpected_visible": null
+  },
+  "complete_live_metadata_verified": false,
+  "admin_maintenance_scope": "Path/help/safety/dispatch checked; clean build, full restore, PITR and admin trigger inventory were not rerun in this organization task. Historical real build/restore evidence retains original dates.",
+  "browser_scope": "No browser automation attempted after prior permission denial; DOM is local code rendering, not visual or end-to-end mouse acceptance.",
+  "original_source_policy": "Original directories are not modified by this integration. Initial source hashes are retained; later source-directory changes do not replace integrated files.",
+  "private_files_policy": "Existing local files copied into 01_平台工程/.local only; no values or hashes of credentials are stored in this report.",
+  "historical_records_policy": "Old dates and failures preserved, not counted as current passes.",
+  "background_service_at_handoff": {
+    "running": false,
+    "port_5000_listeners": 0,
+    "verified_after_all_tests": true
+  },
+  "report_archive": "完整测试日志保存在本地，仓库提供第二版整合验收摘要。"
+}

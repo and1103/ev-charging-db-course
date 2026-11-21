@@ -1,0 +1,414 @@
+[
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/局部ER图.png",
+    "source_sha256": "fd7cdc5aca0c1e3cbe70d90fe7b43949f65244ffb7655901fd9440f86b8784d4",
+    "width": 2142,
+    "height": 1687,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      },
+      {
+        "message": "Warning: no value for width of non-ASCII character 229. Falling back to width of space character",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/用例图.png",
+    "source_sha256": "189242bf7a1456fe223536f344341299e470fe316ed5c68e6ce959facc80900c",
+    "width": 606,
+    "height": 795,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/鲁棒图.png",
+    "source_sha256": "e21d2ff6e32218436b35301e9fa26a830199ef50be60098acf50a83afb9c5ab3",
+    "width": 1199,
+    "height": 911,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/全局UML分区详图.png",
+    "source_sha256": "de869427773ec1205ad0866234ed64e5b894f7c8663bd59ab95559d13db8748e",
+    "width": 2047,
+    "height": 750,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/充电估算与到站排队/局部ER图.png",
+    "source_sha256": "30a132d1bc0fffaa629860e77d2cae3e64644a60c35b1950fc411d217533fb0e",
+    "width": 1643,
+    "height": 1364,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/充电估算与到站排队/用例图.png",
+    "source_sha256": "c73ae97e6adc3e59cde174761cf18c32a93493893faf782c58c8bedb3e3965c0",
+    "width": 631,
+    "height": 1083,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/充电估算与到站排队/鲁棒图.png",
+    "source_sha256": "3a14e04008055b2bb7e78dea5ff0876f4900b185a5dea135ce00cfb776de968a",
+    "width": 1114,
+    "height": 881,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/充电估算与到站排队/全局UML分区详图.png",
+    "source_sha256": "a9e535a57cd68e97ecbd5e112413c812b435852af56dcc0a44020975d1203fd0",
+    "width": 1649,
+    "height": 578,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/局部ER图.png",
+    "source_sha256": "66ab974a88697f9a725376f6d52997e76237785dcb13504bdb51f052d15f95be",
+    "width": 3964,
+    "height": 1772,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/用例图.png",
+    "source_sha256": "13f50b15c60b47068f769e5f60f02bc240d8580ab4453428a7868bb9544b86cd",
+    "width": 688,
+    "height": 1083,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/鲁棒图.png",
+    "source_sha256": "28f0b8d083ea8ca2218c18e586633790a3db7a565398aad02231662bca11dd38",
+    "width": 1158,
+    "height": 1120,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/全局UML分区详图.png",
+    "source_sha256": "bad11301d885c797090867eeba5d3cc4b0212a84afbd44255cf78b82c4712644",
+    "width": 2193,
+    "height": 1345,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/C_设备监控与故障工单/设备监控与故障工单/局部ER图.png",
+    "source_sha256": "fcd52a6a803284719e07702ed4c62f2d6e9aa60dca4a0015617803b5a3c35cce",
+    "width": 2599,
+    "height": 1337,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/C_设备监控与故障工单/设备监控与故障工单/用例图.png",
+    "source_sha256": "cc6c2af54b06ac302b61702de90348a0bae96f5608f53646272c1a0ef4d01da8",
+    "width": 663,
+    "height": 988,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/C_设备监控与故障工单/设备监控与故障工单/鲁棒图.png",
+    "source_sha256": "cb003c9e8b7febec7c295cc8ba7ac748426b10eaa55fe556165324a987cf9e70",
+    "width": 1148,
+    "height": 1023,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/C_设备监控与故障工单/设备监控与故障工单/全局UML分区详图.png",
+    "source_sha256": "f339753c4cd4949a0b8fd1a166784bcfc897e85a2bc5b487f246f21daa7ee74b",
+    "width": 1649,
+    "height": 1064,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/局部ER图.png",
+    "source_sha256": "142f49481962853369ac68a61894d708b8eac97945034fdc2617911c510b6f52",
+    "width": 4748,
+    "height": 1474,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/用例图.png",
+    "source_sha256": "4bb0e42aa27dc06de5159a4f01695813a39ccd300c35936ae23236472186ee06",
+    "width": 620,
+    "height": 1270,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/鲁棒图.png",
+    "source_sha256": "cd3f3bd832bdc527719ab7cfa69d46c36a58ca28745be17eb987d32bb9a39b12",
+    "width": 1191,
+    "height": 1542,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/全局UML分区详图.png",
+    "source_sha256": "68d89931669dc9c635844aeff8638eb9170aad6556882dbbdee9da8016cb6be3",
+    "width": 1688,
+    "height": 1573,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/局部ER图.png",
+    "source_sha256": "7b1702c67b44bb23a75d4d9a026f62e4c9e5cb9608d3ec2265ab3521cc9c485f",
+    "width": 6482,
+    "height": 1474,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/用例图.png",
+    "source_sha256": "6874b0b380ad52049dc482e6c463f74485440e0a5d7b9a0896bf70332a471a43",
+    "width": 675,
+    "height": 1063,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/鲁棒图.png",
+    "source_sha256": "c729b79e01e3ad5058cd12d9edc6a405b1f89b2c90ada1bbdc8a681cb86b241f",
+    "width": 1175,
+    "height": 1439,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/全局UML分区详图.png",
+    "source_sha256": "ecadf002160bdca5811b493ad7c271304b571fb2920e484960e16eda4b0831c6",
+    "width": 1790,
+    "height": 2587,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/全局UML类图.png",
+    "source_sha256": "7ee1ae02f29c18b0918c0676e84e16df0eb8d0fd9714928dbb568ff6ed334171",
+    "width": 3700,
+    "height": 3122,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/全局ER图.png",
+    "source_sha256": "7284f590d07b89245a17d5d2fd3930cf88404d5086da6207a79bf705256c85b4",
+    "width": 8761,
+    "height": 3694,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/A_场站设施与排队/场站与充电设施/报告ER_资产主链.png",
+    "source_sha256": "9b367bab9d3bc4117ce08fea0e179add4d41aad07e552abd97f50b3f4dd9523f",
+    "width": 1019,
+    "height": 728,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/报告ER_订单计量与费率.png",
+    "source_sha256": "8984e27b201c06df72f62db9e25b45b45be7d76337cb440b4b7fd5e735ae5001",
+    "width": 963,
+    "height": 1088,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/B_充电订单与计费/充电订单与计费/报告ER_支付退款与复核.png",
+    "source_sha256": "b47f46e63a7396b35e61314867063e13e275992c25f7f3333d4f25907c9cefa8",
+    "width": 1014,
+    "height": 728,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/报告ER_用户与车辆.png",
+    "source_sha256": "656d5371e82679f3cf165a225d651fe6229459cc13a9a3c28126ca3ae1f32333",
+    "width": 950,
+    "height": 728,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/报告ER_活动与核销.png",
+    "source_sha256": "e57f8f3022e8ee427f37c4fabb8194d77b973673bdb4bee9307d310bcae85f70",
+    "width": 1099,
+    "height": 728,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/D_用户与会员运营/用户与会员运营/报告ER_车队与额度.png",
+    "source_sha256": "0e25426bc158db3bbf76b1502918f936224025c26cfe2ab9505218ed15e056fe",
+    "width": 1086,
+    "height": 1088,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/报告ER_结算对账与确认.png",
+    "source_sha256": "a6d0261de44ba1c309ea3d6b3158c9d1b27984ad983db931f83fe0a4198eb246",
+    "width": 1496,
+    "height": 1340,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  },
+  {
+    "file": "03_需求与设计/业务分线与图件/E_结算与对账/结算与对账/报告ER_消费与结算票据.png",
+    "source_sha256": "88c799e49cf663edaf2163ff96043c889b3e2c1ffda4825ba166a2ec0d81790c",
+    "width": 1529,
+    "height": 1088,
+    "warnings": [
+      {
+        "message": "Warning: no hard-coded metrics for 'Microsoft YaHei'.  Falling back to 'Times' metrics",
+        "level": "warning"
+      }
+    ]
+  }
+]

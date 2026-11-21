@@ -1,34 +1,21 @@
-# Local runtime configuration and credentials
+01_平台工程/.venv/
+01_平台工程/.local/
+**/node_modules/
+**/__pycache__/
+*.pyc
+过程文件/本次整合/运行日志/
+
+# Machine-specific files and generated artifacts
 .env
 .env.*
-!.env.example
-!.env.sample
-.local/
 *.dpapi
-*.pem
-*.key
-password.txt
-passwords.txt
-credentials.json
-secrets.json
-
-# Python environment and generated files
-.venv/
-venv/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.coverage
-
-# Local backups, logs, and tools
+密码.txt
 *.log
 *.bak
 *.dump
-*.zip
-*.tar.gz
-backups/
-logs/
-.vscode/
-.idea/
-Thumbs.db
-~$*
+05_备份与恢复/历史全量样例_*/
+过程文件/*
+!过程文件/本次整合/
+过程文件/本次整合/*
+!过程文件/本次整合/第二版整合验收.json
+!过程文件/本次整合/第二版整合与验收说明.md

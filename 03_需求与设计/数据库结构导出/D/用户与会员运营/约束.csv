@@ -1,0 +1,57 @@
+﻿表,约束名,约束类型,字段,引用表,引用字段,检查表达式
+account,account_chk_1,CHECK,,,,"(`role` in (_utf8mb4\'driver\',_utf8mb4\'admin\',_utf8mb4\'maintenance\',_utf8mb4\'settlement\',_utf8mb4\'operator\',_utf8mb4\'fleet\'))"
+account,account_chk_2,CHECK,,,,(`balance` >= 0)
+account,account_chk_3,CHECK,,,,((`reserved_balance` >= 0) and (`reserved_balance` <= `balance`))
+account,account_ibfk_1,FOREIGN KEY,operator_id,operator,id,
+account,account_ibfk_2,FOREIGN KEY,station_id,station,id,
+account,login,UNIQUE,login,,,
+account,PRIMARY,PRIMARY KEY,id,,,
+campaign,campaign_chk_1,CHECK,,,,(`face` > 0)
+campaign,campaign_chk_2,CHECK,,,,(`minimum` >= 0)
+campaign,campaign_chk_3,CHECK,,,,(`stock` >= 0)
+campaign,campaign_chk_4,CHECK,,,,(`expires` > `starts`)
+campaign,campaign_ibfk_1,FOREIGN KEY,station_id,station,id,
+campaign,PRIMARY,PRIMARY KEY,id,,,
+consumer_invoice_request,consumer_invoice_request_chk_1,CHECK,,,,"(`state` in (_utf8mb4\'pending\',_utf8mb4\'issued\',_utf8mb4\'rejected\'))"
+consumer_invoice_request,consumer_invoice_request_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+consumer_invoice_request,order_id,UNIQUE,order_id,,,
+consumer_invoice_request,PRIMARY,PRIMARY KEY,id,,,
+coupon,campaign_id,UNIQUE,campaign_id,,,
+coupon,campaign_id,UNIQUE,account_id,,,
+coupon,coupon_ibfk_1,FOREIGN KEY,campaign_id,campaign,id,
+coupon,coupon_ibfk_2,FOREIGN KEY,account_id,account,id,
+coupon,PRIMARY,PRIMARY KEY,id,,,
+driver_feedback,driver_feedback_chk_1,CHECK,,,,"(`kind` in (_utf8mb4\'fault\',_utf8mb4\'rating\'))"
+driver_feedback,driver_feedback_ibfk_1,FOREIGN KEY,order_id,charge_order,id,
+driver_feedback,PRIMARY,PRIMARY KEY,id,,,
+fleet,fleet_ibfk_1,FOREIGN KEY,manager_id,account,id,
+fleet,PRIMARY,PRIMARY KEY,id,,,
+fleet_card,fleet_card_chk_1,CHECK,,,,(`credit_limit` >= 0)
+fleet_card,fleet_card_chk_2,CHECK,,,,(`reserved_amount` >= 0)
+fleet_card,fleet_card_ibfk_1,FOREIGN KEY,fleet_id,fleet,id,
+fleet_card,fleet_card_ibfk_2,FOREIGN KEY,vehicle_id,vehicle,id,
+fleet_card,fleet_card_ibfk_3,FOREIGN KEY,driver_id,account,id,
+fleet_card,PRIMARY,PRIMARY KEY,id,,,
+redemption,order_id,UNIQUE,order_id,,,
+redemption,PRIMARY,PRIMARY KEY,coupon_id,,,
+redemption,redemption_chk_1,CHECK,,,,(`discount` > 0)
+redemption,redemption_ibfk_1,FOREIGN KEY,coupon_id,coupon,id,
+redemption,redemption_ibfk_2,FOREIGN KEY,order_id,charge_order,id,
+vehicle,PRIMARY,PRIMARY KEY,id,,,
+vehicle,vehicle_chk_1,CHECK,,,,(`capacity_kwh` > 0)
+vehicle,vehicle_chk_2,CHECK,,,,(`max_kw` > 0)
+vehicle_binding,current_vehicle,UNIQUE,current_vehicle,,,
+vehicle_binding,PRIMARY,PRIMARY KEY,id,,,
+vehicle_binding,vehicle_binding_chk_1,CHECK,,,,((`binding_end` is null) or (`binding_end` > `since`))
+vehicle_binding,vehicle_binding_ibfk_1,FOREIGN KEY,vehicle_id,vehicle,id,
+vehicle_binding,vehicle_binding_ibfk_2,FOREIGN KEY,account_id,account,id,
+wallet_entry,payment_id,UNIQUE,payment_id,,,
+wallet_entry,PRIMARY,PRIMARY KEY,id,,,
+wallet_entry,refund_id,UNIQUE,refund_id,,,
+wallet_entry,topup_ref,UNIQUE,topup_ref,,,
+wallet_entry,wallet_entry_chk_1,CHECK,,,,(`change` <> 0)
+wallet_entry,wallet_entry_chk_2,CHECK,,,,(((`payment_id` is not null) + (`refund_id` is not null)) <= 1)
+wallet_entry,wallet_entry_ibfk_1,FOREIGN KEY,account_id,account,id,
+wallet_entry,wallet_entry_ibfk_2,FOREIGN KEY,payment_id,payment,id,
+wallet_entry,wallet_entry_ibfk_3,FOREIGN KEY,refund_id,refund,id,
+wallet_entry,wallet_entry_topup_shape,CHECK,,,,((`topup_ref` is null) or ((`change` > 0) and (`payment_id` is null) and (`refund_id` is null)))

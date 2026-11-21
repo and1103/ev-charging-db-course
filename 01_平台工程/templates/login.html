@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录 · 充电运营服务平台</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/workspace.css') }}">
+  <script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
+</head>
+<body class="login-page">
+  <main class="login-layout">
+    <section class="login-story">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">ϟ</span><span>充电运营<small>CHARGE / OPERATIONS</small></span></div>
+      <div class="login-copy"><div class="eyebrow">连接每一次绿色出行</div><h1>让充电服务，<br>有序发生。</h1><p>从场站与订单，到设备维护与账期结算，<br>在一个工作台掌握完整业务。</p></div>
+      <div class="station-art" aria-hidden="true"><div class="art-orbit"></div><div class="art-charger"><div class="art-screen"><span>ϟ</span><small>READY TO CHARGE</small></div><div class="art-slot"></div></div><div class="art-cable"></div><div class="art-ground"></div><span class="art-label">CLEAN ENERGY / CONNECTED SERVICE</span></div>
+      <div class="login-story-footer">A 场站　 B 计费　 C 运维　 D 会员　 E 结算</div>
+    </section>
+    <section class="login-panel"><div class="login-form-wrap"><div class="login-caption">欢迎回来</div><h2 id="login-title">登录工作台</h2><p class="muted" id="login-subtitle">使用课设账号，进入你的业务空间。</p><div id="login-form"></div><div id="login-error" role="alert"></div><button class="text-button" id="switch-auth">还没有账号？注册车主账号 →</button><div class="login-hint"><span class="connection-dot"></span> 本机 Flask + MySQL 8.4<span>已有角色：车主 / 管理员 / 维修 / 财务 / 运营商 / 车队</span></div></div><div class="login-legal">本地课程设计演示 · 设备、支付及票据均为模拟业务</div></section>
+  </main><div id="toast-region" class="toast-region" aria-live="polite"></div>
+</body>
+</html>

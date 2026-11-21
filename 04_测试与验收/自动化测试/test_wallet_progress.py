@@ -41,7 +41,7 @@ class WalletProgressTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         with engine.connect() as db:
-            if db.exec_driver_sql("SELECT DATABASE()").scalar_one() != "charge_course_20261114":
+            if db.exec_driver_sql("SELECT DATABASE()").scalar_one() != "charge_course_v3":
                 raise unittest.SkipTest("Only the dedicated synthetic course schema is permitted")
         app.config["TESTING"] = True
 

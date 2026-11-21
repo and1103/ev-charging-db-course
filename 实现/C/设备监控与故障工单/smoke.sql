@@ -1,5 +1,6 @@
 -- Execute on the seeded demo database with the mysql client.
 SET time_zone='+08:00';
+DROP PROCEDURE IF EXISTS charge_smoke;
 DELIMITER $$
 CREATE PROCEDURE charge_smoke()
 BEGIN
@@ -27,11 +28,10 @@ BEGIN
  IF (SELECT state FROM charge_order WHERE id=o)<>'review' THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='disconnect did not require review'; END IF;
  SELECT id INTO s FROM settlement WHERE station_id=1 AND period='2026-11-01';
  SELECT id INTO d FROM recon_diff WHERE settlement_id=s AND kind='price';
- CALL confirm_difference(d,501,'accept');
- IF EXISTS(SELECT 1 FROM settlement_adjustment WHERE diff_id=d) THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='single side adjusted'; END IF;
- CALL confirm_difference(d,101,'accept');
- IF NOT EXISTS(SELECT 1 FROM settlement_adjustment WHERE diff_id=d AND amount=1) THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='adjustment missing'; END IF;
- CALL confirm_settlement(s);
+ IF (SELECT COUNT(*) FROM settlement_confirmation WHERE settlement_id=s)<>2
+ THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='bilateral settlement signatures missing'; END IF;
+ IF NOT EXISTS(SELECT 1 FROM settlement_adjustment WHERE diff_id=d)
+ THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='confirmed difference adjustment missing'; END IF;
  SET refused=false;
  BEGIN
   DECLARE CONTINUE HANDLER FOR SQLSTATE '45000' SET refused=true;

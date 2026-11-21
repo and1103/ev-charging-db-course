@@ -57,7 +57,7 @@ BEGIN
  SET entry_key=NULL;
  SELECT e.id INTO entry_key FROM queue_entry e WHERE e.station_id=station_key AND e.state='waiting'
  AND compatible(e.vehicle_id,p_gun) AND EXISTS(SELECT 1 FROM vehicle_binding b
- WHERE b.vehicle_id=e.vehicle_id AND b.account_id=e.account_id AND b.binding_end IS NULL)
+  WHERE b.vehicle_id=e.vehicle_id AND b.account_id=e.account_id AND b.since<=t AND (b.binding_end IS NULL OR t<b.binding_end))
  ORDER BY e.queued_at,e.id LIMIT 1 FOR UPDATE;
  IF entry_key IS NULL THEN RETURN NULL; END IF;
  INSERT INTO queue_call(entry_id,connector_id,called_at,deadline,notified_at) VALUES(entry_key,p_gun,t,t+INTERVAL 5 MINUTE,t);
@@ -81,7 +81,8 @@ BEGIN
 END$$
 CREATE FUNCTION take_queue(p_user bigint,p_vehicle bigint,p_station bigint) RETURNS bigint MODIFIES SQL DATA
 BEGIN
- IF NOT EXISTS(SELECT 1 FROM vehicle_binding WHERE account_id=p_user AND vehicle_id=p_vehicle AND binding_end IS NULL)
+  IF NOT EXISTS(SELECT 1 FROM vehicle_binding WHERE account_id=p_user AND vehicle_id=p_vehicle AND since<=SYSDATE(6)
+   AND (binding_end IS NULL OR SYSDATE(6)<binding_end))
  THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='vehicle not bound'; END IF;
  INSERT INTO queue_entry(station_id,vehicle_id,account_id) VALUES(p_station,p_vehicle,p_user);
  RETURN LAST_INSERT_ID();
@@ -90,16 +91,25 @@ CREATE FUNCTION open_charge(p_user bigint,p_vehicle bigint,p_gun bigint,p_card b
 BEGIN
  DECLARE lock_id bigint; DECLARE station_key bigint; DECLARE usable boolean; DECLARE call_key bigint;
  DECLARE entry_key bigint; DECLARE tariff_key bigint; DECLARE result bigint;
- DECLARE fleet_key bigint; DECLARE credit decimal(12,2);
+ DECLARE fleet_key bigint; DECLARE credit decimal(12,2); DECLARE budget decimal(12,2);
  SELECT id INTO lock_id FROM connector WHERE id=p_gun FOR UPDATE;
+ -- Establish the first consistent read only after the funding owner is locked.
+ -- Otherwise a completed order can disappear from holds before its billed usage
+ -- becomes visible to this function's earlier read snapshot.
+ IF p_card IS NULL THEN
+  SELECT id INTO lock_id FROM account WHERE id=p_user FOR UPDATE;
+ ELSE
+  SELECT fleet_id,credit_limit INTO fleet_key,credit FROM fleet_card
+   WHERE id=p_card AND vehicle_id=p_vehicle AND driver_id=p_user AND enabled FOR UPDATE;
+  IF fleet_key IS NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='fleet card owner or vehicle mismatch'; END IF;
+ END IF;
  SELECT station_id,ready INTO station_key,usable FROM v_gun_state WHERE id=p_gun;
  IF NOT COALESCE(usable,false) OR NOT COALESCE(compatible(p_vehicle,p_gun),false)
- OR NOT EXISTS(SELECT 1 FROM vehicle_binding WHERE account_id=p_user AND vehicle_id=p_vehicle AND binding_end IS NULL)
+ OR NOT EXISTS(SELECT 1 FROM vehicle_binding WHERE account_id=p_user AND vehicle_id=p_vehicle AND since<=SYSDATE(6)
+  AND (binding_end IS NULL OR SYSDATE(6)<binding_end))
  THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='connector unavailable or vehicle not bound'; END IF;
  IF p_card IS NOT NULL THEN
-  SELECT fleet_id,credit_limit INTO fleet_key,credit FROM fleet_card WHERE id=p_card AND vehicle_id=p_vehicle AND driver_id=p_user AND enabled FOR UPDATE;
-  IF fleet_key IS NULL OR credit<=COALESCE((SELECT SUM(gross-discount) FROM charge_order WHERE fleet_card_id=p_card AND state IN ('review','billed','paid')
-   AND started_at>=DATE_FORMAT(NOW(),'%Y-%m-01')),0) OR EXISTS(SELECT 1 FROM charge_order WHERE fleet_card_id=p_card AND active_gun IS NOT NULL)
+  IF fleet_key IS NULL OR EXISTS(SELECT 1 FROM charge_order WHERE fleet_card_id=p_card AND active_gun IS NOT NULL)
   THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='fleet card has no available credit'; END IF;
  END IF;
  SET call_key=assign_gun(p_gun);
@@ -108,14 +118,14 @@ BEGIN
     WHERE q.id=call_key AND e.account_id=p_user AND e.vehicle_id=p_vehicle AND q.deadline>SYSDATE(6);
   IF entry_key IS NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='gun reserved for another vehicle or call expired'; END IF;
  END IF;
- SELECT id INTO tariff_key FROM tariff WHERE station_id=station_key AND starts<=NOW() AND NOW()<ends
+ SELECT id,GREATEST(minimum,authorization_amount) INTO tariff_key,budget FROM tariff WHERE station_id=station_key AND starts<=NOW() AND NOW()<ends
  AND (fleet_id IS NULL OR fleet_id=fleet_key) ORDER BY fleet_id IS NULL,id LIMIT 1 FOR UPDATE;
  IF tariff_key IS NULL OR (SELECT COALESCE(SUM(minute_to-minute_from),0) FROM tariff_band WHERE tariff_id=tariff_key)<>1440
  THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='missing or incomplete tariff'; END IF;
- IF p_card IS NULL AND (SELECT balance FROM account WHERE id=p_user)<(SELECT minimum FROM tariff WHERE id=tariff_key)
- THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='balance below startup minimum'; END IF;
- INSERT INTO charge_order(account_id,vehicle_id,connector_id,tariff_id,fleet_card_id,started_at,state)
- VALUES(p_user,p_vehicle,p_gun,tariff_key,p_card,SYSDATE(6),'charging');
+ IF p_card IS NOT NULL THEN CALL check_fleet_credit_current(p_card,0,CAST(DATE_FORMAT(SYSDATE(6),'%Y-%m-01') AS DATE),0,budget,0); END IF;
+ -- The order trigger locks the account/card and reserves this budget atomically.
+ INSERT INTO charge_order(account_id,vehicle_id,connector_id,tariff_id,fleet_card_id,started_at,state,authorized_amount)
+ VALUES(p_user,p_vehicle,p_gun,tariff_key,p_card,SYSDATE(6),'charging',budget);
  SET result=LAST_INSERT_ID();
  UPDATE connector SET state='occupied' WHERE id=p_gun;
  IF call_key IS NOT NULL THEN
